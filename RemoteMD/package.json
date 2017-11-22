@@ -1,0 +1,9 @@
+{
+  "name": "remote-md",
+  "version": "0.0.0",
+  "description": "RemoteMD",
+  "main": "server.js",
+  "author": {
+    "name": "Ben Weiss"
+  }
+}
