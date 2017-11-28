@@ -6,6 +6,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var SerialPort = require('serialport');
+
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -64,6 +67,10 @@ app.use(function (err, req, res, next) {
 
 app.set('port', process.env.PORT || 3000);
 
+var ardPort = [];
+var ardi = 2;
+
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
 });
+

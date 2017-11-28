@@ -17,6 +17,7 @@
     "morgan": "^1.7.0",
     "nodemon": "^1.12.1",
     "pug": "^2.0.0-beta6",
+    "serialport": "^6.0.4",
     "serve-favicon": "^2.3.0"
   }
 }
