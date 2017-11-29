@@ -7,16 +7,8 @@ function flashlight() {
 	let url = 'ip/robot/flashlight/';
 	url += (buttonClass == 'lightOff' ? 'on' : 'off');
 	
-	if (buttonClass == 'lightOff') {
-		buttonClass.remove('lightOff');
-		buttonClass.add('lightOn');
-	} else {
-			buttonClass.remove('lightOn');
-			buttonClass.add('lightOff');
-	}
 	
-	
- /* fetch(url, { 
+  fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -25,9 +17,15 @@ function flashlight() {
     	 throw new Error('Request failed!'); },
 	  networkError => console.log(networkError.message)
 		).then(jsonResponse => { 
-				//code
+				if (buttonClass == 'lightOff') {
+					buttonClass.remove('lightOff');
+					buttonClass.add('lightOn');
+				} else {
+						buttonClass.remove('lightOn');
+						buttonClass.add('lightOff');
+				}
 				return jsonResponse; 
-			}); */
+			}); 
 };
 
 
@@ -56,16 +54,8 @@ function stop() {
 	let buttonElement = document.getElementById('stop');
 	
 	let url = 'ip/robot/stop';
-
-	buttonElement.classList.remove('none');
-	buttonElement.classList.add('red');
-
-	window.setTimeout(() => {
-		buttonElement.classList.remove('red');
-		buttonElement.classList.add('none');
-	}, 1000);
 	
- /* fetch(url, { 
+  fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -74,9 +64,15 @@ function stop() {
     	 throw new Error('Request failed!'); },
 	  networkError => console.log(networkError.message)
 		).then(jsonResponse => { 
-			buttonClass = (buttonClass == 'yellow' ? 'white' : 'yellow');
+				buttonElement.classList.remove('none');
+				buttonElement.classList.add('red');
+			
+				window.setTimeout(() => {
+					buttonElement.classList.remove('red');
+					buttonElement.classList.add('none');
+				}, 1000);
 				return jsonResponse; 
-			}); */
+			}); 
 };
 
 
@@ -86,18 +82,9 @@ function go() {
 	let buttonElement = document.getElementById('go');
 	
 	let url = 'ip/robot/move';
-
-	buttonElement.classList.remove('none');
-	buttonElement.classList.add('green');
-
-	window.setTimeout(() => {
-		buttonElement.classList.remove('green');
-		buttonElement.classList.add('none');
-	}, 1000);
-
 	
 	
- /* fetch(url, { 
+  fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -106,9 +93,16 @@ function go() {
     	 throw new Error('Request failed!'); },
 	  networkError => console.log(networkError.message)
 		).then(jsonResponse => { 
-			buttonClass = (buttonClass == 'yellow' ? 'white' : 'yellow');
+				buttonElement.classList.remove('none');
+				buttonElement.classList.add('green');
+			
+				window.setTimeout(() => {
+					buttonElement.classList.remove('green');
+					buttonElement.classList.add('none');
+				}, 1000);
+		
 				return jsonResponse; 
-			}); */
+			}); 
 };
 
 
