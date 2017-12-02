@@ -114,4 +114,4 @@ app.post('/robot/move/right', function(req, res) {
 
 
 
-var server = app.listen(80);
+var server = app.listen(80).on('error', console.log);
