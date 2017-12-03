@@ -2,26 +2,26 @@ var express = require('express');
 var app = express();
 
 /*~~~~~~ Serving static files ~~~~~~*/
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '../views'));
 
 
 /*~~~~~~ handle GET requests ~~~~~~*/
 /*
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/views/' + 'index.html');
+  res.sendFile(__dirname + '../views/' + 'index.html');
 })
 
 app.get('/doctor', function(req, res) {
-  res.sendFile(__dirname + '/views/' + 'doctor-index.html');
+  res.sendFile(__dirname + '../views/' + 'doctor-index.html');
 })
 
 app.get('/patient', function(req, res) {
-  res.sendFile(__dirname + '/views/' + 'doctor-index.html');
+  res.sendFile(__dirname + '../views/' + 'doctor-index.html');
 })
 
 
 app.get('/navigation', function(req, res) {
-  res.sendFile(__dirname + '/views/' + 'navigation.html');
+  res.sendFile(__dirname + '../views/' + 'navigation.html');
 })
 */
 
