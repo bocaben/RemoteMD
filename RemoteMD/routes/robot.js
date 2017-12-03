@@ -41,7 +41,7 @@ function getArdPort() {
     SerialPort.list(function findArduino(err, ports) {
         var port = ports.find(function (port) { return ("" + port.manufacturer).startsWith("Arduino"); });
         if (port == undefined) {
-            console.log("ROBOT: No Arduino connected!");
+            //console.log("ROBOT: No Arduino connected!");
             return;
         }
         console.log("ROBOT: Found Arduino - " + port.comName + " [" + port.manufacturer + "]");

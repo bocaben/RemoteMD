@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var fetch = require('node-fetch');
+
 
 /*~~~~~~ Serving static files ~~~~~~*/
 router.use(express.static(__dirname + '../views'));
@@ -25,9 +27,27 @@ router.get('/navigation', function(req, res) {
 })
 */
 
+var robotURL = 'http://192.168.43.77' + ':8080'
+
 /*~~~~~~ handle POST requests ~~~~~~*/
-router.post('/cloud/flashlight/on', function(req, res) {
-  fetch('ip/robot/flashlight/on', { 
+router.all('/flashlight/on', function (req, res) {
+    console.log('CLOUD: Got request for /cloud/flashlight/on')
+    fetch(robotURL + '/robot/flashlight/on', { 
+		method: 'POST', 
+		headers: { "Content-type": "application/json"},
+		body: JSON.stringify()}
+	).then(response => {
+   		 if (response.ok) { return response.json(); }
+    	 throw new Error('Request failed!'); },
+	  networkError => console.log(networkError.message)
+	).then(jsonResponse => { 
+			return jsonResponse; 
+        });
+    res.json({ "flashlight": "on" });
+})
+
+router.post('/flashlight/off', function(req, res) {
+    fetch(robotURL + '/robot/flashlight/off', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -40,8 +60,8 @@ router.post('/cloud/flashlight/on', function(req, res) {
 			}); 
 })
 
-router.post('/cloud/flashlight/off', function(req, res) {
-  fetch('/robot/flashlight/off', { 
+router.post('/move/left', function(req, res) {
+    fetch(robotURL + '/robot/move/left', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -54,8 +74,8 @@ router.post('/cloud/flashlight/off', function(req, res) {
 			}); 
 })
 
-router.post('/cloud/move/left', function(req, res) {
-  fetch('ip/robot/move/left', { 
+router.post('/stop', function(req, res) {
+    fetch(robotURL + '/robot/stop', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -68,22 +88,8 @@ router.post('/cloud/move/left', function(req, res) {
 			}); 
 })
 
-router.post('/cloud/stop', function(req, res) {
-  fetch('ip/robot/stop', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
-})
-
-router.post('/cloud/move', function(req, res) {
-  fetch('ip/robot/move', { 
+router.post('/move', function(req, res) {
+    fetch(robotURL + '/robot/move', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -97,8 +103,8 @@ router.post('/cloud/move', function(req, res) {
 })
 
 
-router.post('/cloud/move/right', function(req, res) {
-  fetch('ip/robot/move/right', { 
+router.post('/move/right', function(req, res) {
+    fetch(robotURL + '/robot/move/right', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}

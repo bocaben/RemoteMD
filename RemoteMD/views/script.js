@@ -8,24 +8,24 @@ function flashlight() {
 	url += (buttonClass == 'lightOff' ? 'on' : 'off');
 	
 	
-  fetch(url, { 
+    fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
 	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				if (buttonClass == 'lightOff') {
-					buttonClass.remove('lightOff');
-					buttonClass.add('lightOn');
-				} else {
-						buttonClass.remove('lightOn');
-						buttonClass.add('lightOff');
-				}
-				return jsonResponse; 
-			}); 
+   		    if (response.ok) { return response.json(); }
+    	    throw new Error('Request failed!'); },
+	    networkError => console.log(networkError.message)
+	).then(jsonResponse => { 
+			if (buttonClass == 'lightOff') {
+				buttonClass.remove('lightOff');
+				buttonClass.add('lightOn');
+			} else {
+					buttonClass.remove('lightOn');
+					buttonClass.add('lightOff');
+			}
+			return jsonResponse; 
+		}); 
 };
 
 
