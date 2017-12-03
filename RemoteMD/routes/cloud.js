@@ -1,32 +1,32 @@
 var express = require('express');
-var app = express();
+var router = express.Router();
 
 /*~~~~~~ Serving static files ~~~~~~*/
-app.use(express.static(__dirname + '../views'));
+router.use(express.static(__dirname + '../views'));
 
 
 /*~~~~~~ handle GET requests ~~~~~~*/
 /*
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
   res.sendFile(__dirname + '../views/' + 'index.html');
 })
 
-app.get('/doctor', function(req, res) {
+router.get('/doctor', function(req, res) {
   res.sendFile(__dirname + '../views/' + 'doctor-index.html');
 })
 
-app.get('/patient', function(req, res) {
+router.get('/patient', function(req, res) {
   res.sendFile(__dirname + '../views/' + 'doctor-index.html');
 })
 
 
-app.get('/navigation', function(req, res) {
+router.get('/navigation', function(req, res) {
   res.sendFile(__dirname + '../views/' + 'navigation.html');
 })
 */
 
 /*~~~~~~ handle POST requests ~~~~~~*/
-app.post('/cloud/flashlight/on', function(req, res) {
+router.post('/cloud/flashlight/on', function(req, res) {
   fetch('ip/robot/flashlight/on', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -40,7 +40,7 @@ app.post('/cloud/flashlight/on', function(req, res) {
 			}); 
 })
 
-app.post('/cloud/flashlight/off', function(req, res) {
+router.post('/cloud/flashlight/off', function(req, res) {
   fetch('/robot/flashlight/off', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -54,7 +54,7 @@ app.post('/cloud/flashlight/off', function(req, res) {
 			}); 
 })
 
-app.post('/cloud/move/left', function(req, res) {
+router.post('/cloud/move/left', function(req, res) {
   fetch('ip/robot/move/left', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -68,7 +68,7 @@ app.post('/cloud/move/left', function(req, res) {
 			}); 
 })
 
-app.post('/cloud/stop', function(req, res) {
+router.post('/cloud/stop', function(req, res) {
   fetch('ip/robot/stop', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -82,7 +82,7 @@ app.post('/cloud/stop', function(req, res) {
 			}); 
 })
 
-app.post('/cloud/move', function(req, res) {
+router.post('/cloud/move', function(req, res) {
   fetch('ip/robot/move', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -97,7 +97,7 @@ app.post('/cloud/move', function(req, res) {
 })
 
 
-app.post('/cloud/move/right', function(req, res) {
+router.post('/cloud/move/right', function(req, res) {
   fetch('ip/robot/move/right', { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -112,3 +112,4 @@ app.post('/cloud/move/right', function(req, res) {
 })
 
 
+module.exports = router
