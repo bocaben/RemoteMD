@@ -32,7 +32,7 @@ function flashlight() {
 function turnLeft() {
 	console.log('turnLeft');
 
-	let url = '/robot/move/left';
+	let url = '/cloud/move/left';
 
   fetch(url, { 
 		method: 'POST', 
