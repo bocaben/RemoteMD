@@ -4,7 +4,7 @@ function flashlight() {
 
 	let buttonClass = document.getElementById('flash').classList;
 
-	let url = '/robot/flashlight/';
+	let url = '/cloud/flashlight/';
 	url += (buttonClass == 'lightOff' ? 'on' : 'off');
 	
 	
@@ -53,7 +53,7 @@ function stop() {
 
 	let buttonElement = document.getElementById('stop');
 	
-	let url = '/robot/stop';
+	let url = '/cloud/stop';
 	
   fetch(url, { 
 		method: 'POST', 
@@ -81,7 +81,7 @@ function go() {
 
 	let buttonElement = document.getElementById('go');
 	
-	let url = '/robot/move';
+	let url = '/cloud/move';
 	
 	
   fetch(url, { 
@@ -110,7 +110,7 @@ function go() {
 function turnRight() {
 	console.log('turnRight');
 
-	let url = '/robot/move/right';
+	let url = '/cloud/move/right';
 
   fetch(url, { 
 		method: 'POST', 
