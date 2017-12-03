@@ -1,15 +1,13 @@
-﻿'use strict';
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
-var path = require('path');
+var app = express();
 
 /* GET home page. */
+router.use('/', express.static(__dirname + '/../views'));
+
 router.get('/', function (req, res) {
-    res.render('index.html');
+    res.sendFile('index.html');
 });
 
-router.get('/what', function (req, res) {
-    res.render('Login', { someVar: 'some Var' });
-});
 
 module.exports = router;
