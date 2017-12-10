@@ -3,26 +3,19 @@
   <head>
     <title>RemoteMD</title>    
     <link rel="stylesheet" type="text/css" href="navigation-style.css">
+    <meta name="viewport" content="width-device-width, initial-scale-1.0" />
     <script type="text/javascript" src="script.js"></script>
   </head> 
   <body>
     <div id="container">
       <div id="buttons">
-        <button id="flash" class="lightOff" onclick="flashlight()"> 
-          <img src="./icons/flash.png">
-        </button>
-        <button id="left" onclick="turnLeft()"> 
-          <img class="navigation" src="./icons/left.png">
-        </button>
-        <button id="stop" class="none" onclick="stop()"> 
-            <img class="navigation" src="./icons/stop.png">
-        </button>
-        <button id="go" class="none" onclick="go()"> 
-            <img class="navigation" src="./icons/go.png">
-        </button>
-        <button id="right" onclick="turnRight()"> 
-          <img class="navigation" src="./icons/right.png">
-        </button>
+   
+        <img id="flash" class="lightOff round" onclick="flashlight()" src="icons/flash.png" /> 
+        <img id="left" class="navigation" onclick="turnLeft()" src="icons/left.png"/> 
+        <img id="go" class="none round" onclick="stop()" src="icons/stop.png"/>
+        <img id="stop" class="none round" onclick="go()" src="icons/go.png"/> 
+        <img id="right" class="navigation" onclick="turnRight()" src="icons/right.png"/>
+   
       </div>
     </div>  
   </body>

@@ -5,10 +5,10 @@ function flashlight() {
 	let buttonClass = document.getElementById('flash').classList;
 
 	let url = '/cloud/flashlight/';
-	url += (buttonClass == 'lightOff' ? 'on' : 'off');
+	url += (buttonClass.contains('lightOff') ? 'on' : 'off');
 	
 	
-    fetch(url, { 
+  fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}
@@ -17,13 +17,13 @@ function flashlight() {
     	    throw new Error('Request failed!'); },
 	    networkError => console.log(networkError.message)
 	).then(jsonResponse => { 
-			if (buttonClass == 'lightOff') {
-				buttonClass.remove('lightOff');
-				buttonClass.add('lightOn');
-			} else {
-					buttonClass.remove('lightOn');
-					buttonClass.add('lightOff');
-			}
+		if (buttonClass.contains('lightOff')) {
+			buttonClass.remove('lightOff');
+			buttonClass.add('lightOn');
+		} else {
+				buttonClass.remove('lightOn');
+				buttonClass.add('lightOff');
+		}
 			return jsonResponse; 
 		}); 
 };
