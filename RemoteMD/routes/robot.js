@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
 // Flashlight - flashlight/[toggle|on|off]
 // TODO: switch to .post for production
 router.all('/flashlight/:toggleValue', function (req, res) {
-    if (['on','off','toggle'].includes(req.params.toggleValue))
+    if (['on','off'].includes(req.params.toggleValue))
     {
         res.json({ "flashlight": req.params.toggleValue});
         console.log('ROBOT: Got from Cloud to make flashlight: ' + req.params.toggleValue);
@@ -45,7 +45,7 @@ function getArdPort() {
             return;
         }
         console.log("ROBOT: Found Arduino - " + port.comName + " [" + port.manufacturer + "]");
-        ardPort = new SerialPort(port.comName, 9600);
+        ardPort = new SerialPort(port.comName, 115200);
 
         Readline = SerialPort.parsers.Readline; // make instance of Readline parser
         parser = new Readline(); // make a new parser to read ASCII lines

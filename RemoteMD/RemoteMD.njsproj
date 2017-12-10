@@ -32,20 +32,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="app2.js" />
     <Compile Include="routes\cloud.js" />
     <Compile Include="routes\robot.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
+    <Compile Include="views\script.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
-    <Content Include="views\info.pug" />
-    <Content Include="views\index.pug" />
-    <Content Include="views\layout.pug" />
-    <Content Include="views\error.pug" />
-    <Content Include="views\Login.pug">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="views\doctor-index.html" />
+    <Content Include="views\doctor-style.css" />
+    <Content Include="views\icons\flash.png" />
+    <Content Include="views\icons\go.png" />
+    <Content Include="views\icons\left.png" />
+    <Content Include="views\icons\right.png" />
+    <Content Include="views\icons\robot.png" />
+    <Content Include="views\icons\stop.png" />
+    <Content Include="views\index.html" />
+    <Content Include="views\navigation-style.css" />
+    <Content Include="views\navigation.html" />
+    <Content Include="views\pugs\error.pug" />
+    <Content Include="views\pugs\index.pug" />
+    <Content Include="views\pugs\info.pug" />
+    <Content Include="views\pugs\layout.pug" />
+    <Content Include="views\pugs\Login.pug" />
+    <Content Include="views\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
@@ -54,6 +66,8 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
+    <Folder Include="views\icons\" />
+    <Folder Include="views\pugs\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

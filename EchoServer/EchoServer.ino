@@ -3,7 +3,7 @@ String msg = "";
 
 void setup() {
   // initialize serial:
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("ARDUINO: Connected");
 }
 

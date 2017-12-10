@@ -30,38 +30,31 @@ router.get('/navigation', function(req, res) {
 var robotURL = 'http://192.168.43.77' + ':8080'
 
 /*~~~~~~ handle POST requests ~~~~~~*/
-router.all('/flashlight/on', function (req, res) {
-    console.log('CLOUD: Got request for /cloud/flashlight/on')
-    fetch(robotURL + '/robot/flashlight/on', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-	).then(jsonResponse => { 
-			return jsonResponse; 
+router.all('/flashlight/:toggleValue', function (req, res) {
+    console.log('CLOUD: Got request for /cloud/flashlight/' + req.params.toggleValue)
+    if (['on', 'off'].includes(req.params.toggleValue)) {
+        //TODO: Ensure this is async
+        fetch(robotURL + '/robot/flashlight/' + req.params.toggleValue, {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify()
+        }
+        ).then(response => {
+            if (response.ok) { return response.json(); }
+            throw new Error('Request failed!');
+        },
+            networkError => console.log(networkError.message)
+        ).then(jsonResponse => {
+            return jsonResponse;
         });
-    res.json({ "flashlight": "on" });
+        res.json({ "flashlight": req.params.toggleValue });
+    }
+    else
+        res.json({ "error": "bad url" });
 })
 
-router.post('/flashlight/off', function(req, res) {
-    fetch(robotURL + '/robot/flashlight/off', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
-})
-
-router.post('/move/left', function(req, res) {
-    fetch(robotURL + '/robot/move/left', { 
+router.post('/move/:turnValue', function (req, res) {
+    fetch(robotURL + '/robot/move/' + req.params.turnValue, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
 		body: JSON.stringify()}

@@ -73,8 +73,5 @@ app.set('port', process.env.PORT || 3000);
 var ardPort = [];
 var ardi = 2;
 
-app.listen('8080', '0.0.0.0');
-//var server = app.listen(app.get('port'), function () {
-//    debug('Express server listening on port ' + server.address().port);
-//});
-
+var server = app.listen(8080).on('error', console.log);
+console.log('Express server listening on port ' + server.address().port);
