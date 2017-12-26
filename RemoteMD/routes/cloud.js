@@ -29,85 +29,81 @@ router.get('/navigation', function(req, res) {
 
 var robotURL = 'http://192.168.43.77' + ':8080'
 
-/*~~~~~~ handle POST requests ~~~~~~*/
+
+
+function genericFetch(url) {
+	fetch(url, {
+		method: 'POST',
+		headers: { "Content-type": "application/json" },
+		body: JSON.stringify()
+	}).then(response => {
+			if (response.ok) { return response.json(); }
+			throw new Error('Request failed!');
+		}, networkError => console.log(networkError.message)
+		).then(jsonResponse => { return jsonResponse; });
+}
+
+/*~~~~~~ handle POST requests from the browser and send POST to the Robot ~~~~~~*/
+
 router.all('/flashlight/:toggleValue', function (req, res) {
-    console.log('CLOUD: Got request for /cloud/flashlight/' + req.params.toggleValue)
+    console.log('CLOUD: Got request for /cloud/flashlight/' + req.params.toggleValue);
     if (['on', 'off'].includes(req.params.toggleValue)) {
-        //TODO: Ensure this is async
-        fetch(robotURL + '/robot/flashlight/' + req.params.toggleValue, {
-            method: 'POST',
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify()
-        }
-        ).then(response => {
-            if (response.ok) { return response.json(); }
-            throw new Error('Request failed!');
-        },
-            networkError => console.log(networkError.message)
-        ).then(jsonResponse => {
-            return jsonResponse;
-        });
-        res.json({ "flashlight": req.params.toggleValue });
-    }
-    else
-        res.json({ "error": "bad url" });
+			//TODO: Ensure this is async
+			let url = robotURL + '/robot/flashlight/' + req.params.toggleValue;
+			genericFetch(url);
+			
+			res.json({ "flashlight": req.params.toggleValue });
+    } else res.json({ "error": "bad url" });
 })
 
 router.post('/move/:turnValue', function (req, res) {
-    fetch(robotURL + '/robot/move/' + req.params.turnValue, { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
+		console.log('CLOUD: Got request for /cloud/move/' + req.params.turnValue);
+		let url = robotURL + '/robot/move/' + req.params.turnValue;
+		genericFetch(url);
 })
 
 router.post('/stop', function(req, res) {
-    fetch(robotURL + '/robot/stop', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
+		console.log('CLOUD: Got request for /cloud/stop/');
+		let url = robotURL + '/robot/stop';
+		genericFetch(url);
 })
 
 router.post('/move', function(req, res) {
-    fetch(robotURL + '/robot/move', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
+		console.log('CLOUD: Got request for /cloud/move/');
+		let url = robotURL + '/robot/move';
+		genericFetch(url);
 })
 
 
-router.post('/move/right', function(req, res) {
-    fetch(robotURL + '/robot/move/right', { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
+/*~~~~~~ handle POST requests from the Robot and send POST to the browser ~~~~~~*/
+
+router.all('/confirm/flashlight/:toggleValue', function (req, res) {
+	console.log('CLOUD: Got confirm for /cloud/flashlight/' + req.params.toggleValue);
+	if (['on', 'off'].includes(req.params.toggleValue)) {
+		//TODO: Ensure this is async
+		let url = robotURL + '/robot/flashlight/' + req.params.toggleValue;
+		genericFetch(url);
+		
+		res.json({ "flashlight": req.params.toggleValue });
+	} else res.json({ "error": "bad url" });
+})
+
+router.post('/confirm/move/:turnValue', function (req, res) {
+	console.log('CLOUD: Got confirm for /cloud/move/' + req.params.turnValue);
+	let url = robotURL + '/robot/move/' + req.params.turnValue;
+	genericFetch(url);
+})
+
+router.post('/confirm/stop', function(req, res) {
+	console.log('CLOUD: Got confirm for /cloud/stop/');
+	let url = robotURL + '/robot/stop';
+	genericFetch(url);
+})
+
+router.post('/confirm/move', function(req, res) {
+	console.log('CLOUD: Got confirm for /cloud/move/');
+	let url = robotURL + '/robot/move';
+	genericFetch(url);
 })
 
 
