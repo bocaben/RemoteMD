@@ -11,9 +11,8 @@ var SerialPort = require('serialport');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var robot = require('./routes/robot');
-var cloud = require('./routes/cloud');
+var map_listener = require('./map_listener');
 
 var app = express();
 
@@ -33,9 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 app.use('/', express.static(__dirname + '/views'));
-app.use('/users', users);
 app.use('/robot', robot);
-app.use('/cloud', cloud);
 
 //// catch 404 and forward to error handler
 //app.use(function (req, res, next) {

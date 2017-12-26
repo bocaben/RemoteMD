@@ -12,9 +12,10 @@ var ardPortOpen = false;
 
 var checkingTimeInterval = 5000;
 
-// TODO: Add ServerName to config file, then only waitForUSB as 'Robot'.
-getArdPort();
-var waitForUsb = setInterval(getArdPort, checkingTimeInterval);
+//// TODO: Add ServerName to config file, then only waitForUSB as 'Robot'.
+//getArdPort();
+//var waitForUsb = setInterval(getArdPort, checkingTimeInterval);
+
 
 
 // Homepage
@@ -22,14 +23,12 @@ router.get('/', function (req, res) {
     res.render('info', { message: 'Available options: /moveXY/x/y, /move/[l|r|f|b], flashlight/[toggle|on|off]' });
 });
 
-// Flashlight - flashlight/[toggle|on|off]
-// TODO: switch to .post for production
+// Flashlight - flashlight/[on|off]
 router.all('/flashlight/:toggleValue', function (req, res) {
-    if (['on','off'].includes(req.params.toggleValue))
-    {
-        res.json({ "flashlight": req.params.toggleValue});
-        console.log('ROBOT: Got from Cloud to make flashlight: ' + req.params.toggleValue);
+    if (['on','off'].includes(req.params.toggleValue)) {
+        console.log('Got from Cloud to make flashlight: ' + req.params.toggleValue);
         tryArdWrite("flashlight " + req.params.toggleValue);
+        res.json({ "flashlight": req.params.toggleValue });
     }
     else
         res.render('info', { message: 'Available options: flashlight/[toggle|on|off]'});
@@ -81,8 +80,16 @@ function showError(error) {
 }
 
 function tryArdWrite(msg) {
-    if (ardPort != undefined)
-        ardPort.write(msg + '\n');
+    if (1)
+        global.child.stdin.write(msg + '\n');
     else
         console.log('ROBOT: No Arduino connected, failed to send msg: "' + msg + '"');
 }
+
+
+//function tryArdWrite_(msg) {
+//    if (ardPort != undefined)
+//        ardPort.write(msg + '\n');
+//    else
+//        console.log('ROBOT: No Arduino connected, failed to send msg: "' + msg + '"');
+//}
