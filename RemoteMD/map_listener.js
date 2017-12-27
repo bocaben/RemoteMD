@@ -1,4 +1,5 @@
-﻿var cloudURL = 'http://192.168.43.xx' + ':8080'
+﻿//var cloudURL = 'http://192.168.43.xx' + ':8080';
+var cloudURL = 'http://localhost' + ':8080';
 
 var fetch = require('node-fetch');
 

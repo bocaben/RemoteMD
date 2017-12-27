@@ -7,18 +7,14 @@
 using namespace std;
 
 int main() {
-  cout << "Who are you?\n";
-  string name;
-  cin >> name;
-  cout << "Hello " << name << "!\n";
- cout.flush();
-
-  int i = 0;
-  while (i < 10) {
-    cout << i++ <<flush;
-    sleep(1);
-    
-}
-
+	string input;
+	while (true) {
+		cin >> input;
+		sleep(rand() % 10);		// Randomly sleeps for up to 10 seconds
+		if (rand() % 10 < 8)	// Succeeds 10% of the time
+			cout << "S_" << input << endl << flush;
+		else
+			cout << "F_" << input << endl << flush;
+	}
     return 0;
 }
