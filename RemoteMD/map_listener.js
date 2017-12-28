@@ -10,6 +10,8 @@ process.stdin.pipe(child.stdin);
 
 global.child.stdout.on('data', (data) => {
     console.log("Got: '" + data + "'");
+    if (data.toString().startsWith('#'))
+        return;
     genericFetch(cloudURL + '/cloud/conf/' + data);
 });
 
