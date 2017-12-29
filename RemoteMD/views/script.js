@@ -1,3 +1,16 @@
+function genericFetch(url, val) {
+	fetch(url, {
+		method: 'POST',
+		headers: { "Content-type": "application/json" },
+		body: JSON.stringify({value: val})
+	}).then(response => {
+			if (response.ok) { return response.json(); }
+			throw new Error('Request failed!');
+		}, networkError => console.log(networkError.message)
+		).then(jsonResponse => { return jsonResponse; });
+}
+
+
 
 function flashlight() {
 	console.log('flashlight');
@@ -11,7 +24,7 @@ function flashlight() {
   fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
+		body: JSON.stringify(value: val)}
 	).then(response => {
    		    if (response.ok) { return response.json(); }
     	    throw new Error('Request failed!'); },
@@ -29,60 +42,22 @@ function flashlight() {
 };
 
 
-function turnLeft() {
-	console.log('turnLeft');
+function turnLeft(num) {
+	console.log('turn left: ' + num);
 
-	let url = '/cloud/move/left';
+	let url = '/cloud/turn/left/' + num;
 
-  fetch(url, { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				return jsonResponse; 
-			}); 
+  genericFetch(url, num);
 };
 
 
-function stop() {
-	console.log('stop');
 
-	let buttonElement = document.getElementById('stop');
-	
-	let url = '/cloud/stop';
-	
-  fetch(url, { 
-		method: 'POST', 
-		headers: { "Content-type": "application/json"},
-		body: JSON.stringify()}
-	).then(response => {
-   		 if (response.ok) { return response.json(); }
-    	 throw new Error('Request failed!'); },
-	  networkError => console.log(networkError.message)
-		).then(jsonResponse => { 
-				buttonElement.classList.remove('none');
-				buttonElement.classList.add('red');
-			
-				window.setTimeout(() => {
-					buttonElement.classList.remove('red');
-					buttonElement.classList.add('none');
-				}, 1000);
-				return jsonResponse; 
-			}); 
-};
+function forward() {
+	console.log('go forward');
 
-
-function go() {
-	console.log('go');
-
-	let buttonElement = document.getElementById('go');
+	let buttonElement = document.getElementById('forward');
 	
-	let url = '/cloud/move';
-	
+	let url = '/cloud/go/forward';
 	
   fetch(url, { 
 		method: 'POST', 
@@ -105,13 +80,13 @@ function go() {
 			}); 
 };
 
+function back() {
+	console.log('go back');
 
-
-function turnRight() {
-	console.log('turnRight');
-
-	let url = '/cloud/move/right';
-
+	let buttonElement = document.getElementById('forward');
+	
+	let url = '/cloud/go/back';
+	
   fetch(url, { 
 		method: 'POST', 
 		headers: { "Content-type": "application/json"},
@@ -121,9 +96,33 @@ function turnRight() {
     	 throw new Error('Request failed!'); },
 	  networkError => console.log(networkError.message)
 		).then(jsonResponse => { 
+				buttonElement.classList.remove('none');
+				buttonElement.classList.add('green');
+			
+				window.setTimeout(() => {
+					buttonElement.classList.remove('green');
+					buttonElement.classList.add('none');
+				}, 1000);
+		
 				return jsonResponse; 
 			}); 
 };
 
+function turnRight(num) {
+	console.log('turn right: ' + num);
+
+	let url = '/cloud/turn/right/' + num;
+
+  genericFetch(url, num);
+};
+
+
+// server-sent events
+let update = new EventSource("/cloud/updates");
+
+update.onmessage = function (event) {
+	switch(data) {
+	
+};                
 
 

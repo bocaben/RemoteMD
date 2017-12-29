@@ -45,7 +45,7 @@ function genericFetch(url) {
 
 /*~~~~~~ handle POST requests from the browser and send POST to the Robot ~~~~~~*/
 
-router.all('/flashlight/:toggleValue', function (req, res) {
+router.post('/flashlight/:toggleValue', function (req, res) {
     console.log('CLOUD: Got request for /cloud/flashlight/' + req.params.toggleValue);
     if (['on', 'off'].includes(req.params.toggleValue)) {
 			//TODO: Ensure this is async
@@ -56,55 +56,39 @@ router.all('/flashlight/:toggleValue', function (req, res) {
     } else res.json({ "error": "bad url" });
 })
 
-router.post('/move/:turnValue', function (req, res) {
-		console.log('CLOUD: Got request for /cloud/move/' + req.params.turnValue);
-		let url = robotURL + '/robot/move/' + req.params.turnValue;
+router.post('/turn/left/:turnValue', function (req, res) {
+		console.log('CLOUD: Got request for /cloud/turn/left/' + req.params.turnValue);
+		let url = robotURL + '/robot/turn/left/' + req.params.turnValue;
 		genericFetch(url);
 })
 
-router.post('/stop', function(req, res) {
-		console.log('CLOUD: Got request for /cloud/stop/');
-		let url = robotURL + '/robot/stop';
-		genericFetch(url);
-})
-
-router.post('/move', function(req, res) {
-		console.log('CLOUD: Got request for /cloud/move/');
-		let url = robotURL + '/robot/move';
-		genericFetch(url);
-})
-
-
-/*~~~~~~ handle POST requests from the Robot and send POST to the browser ~~~~~~*/
-
-router.all('/confirm/flashlight/:toggleValue', function (req, res) {
-	console.log('CLOUD: Got confirm for /cloud/flashlight/' + req.params.toggleValue);
-	if (['on', 'off'].includes(req.params.toggleValue)) {
-		//TODO: Ensure this is async
-		let url = robotURL + '/robot/flashlight/' + req.params.toggleValue;
-		genericFetch(url);
-		
-		res.json({ "flashlight": req.params.toggleValue });
-	} else res.json({ "error": "bad url" });
-})
-
-router.post('/confirm/move/:turnValue', function (req, res) {
-	console.log('CLOUD: Got confirm for /cloud/move/' + req.params.turnValue);
-	let url = robotURL + '/robot/move/' + req.params.turnValue;
+router.post('/turn/right/:turnValue', function (req, res) {
+	console.log('CLOUD: Got request for /cloud/turn/right/' + req.params.turnValue);
+	let url = robotURL + '/robot/turn/right/' + req.params.turnValue;
 	genericFetch(url);
 })
 
-router.post('/confirm/stop', function(req, res) {
-	console.log('CLOUD: Got confirm for /cloud/stop/');
-	let url = robotURL + '/robot/stop';
+
+router.post('/go/forward', function(req, res) {
+		console.log('CLOUD: Got request for /cloud/go/forward/');
+		let url = robotURL + '/robot/go/forward';
+		genericFetch(url);
+})
+
+router.post('/go/back', function(req, res) {
+	console.log('CLOUD: Got request for /cloud/go/back/');
+	let url = robotURL + '/robot/go/back';
 	genericFetch(url);
 })
 
-router.post('/confirm/move', function(req, res) {
-	console.log('CLOUD: Got confirm for /cloud/move/');
-	let url = robotURL + '/robot/move';
-	genericFetch(url);
+
+/*~~~~~~ handle POST requests from the Robot and send to the browser ~~~~~~*/
+
+router.get('/conf/:msg', function (req, res) {
+	console.log('CLOUD: Got confirm from robot for /cloud/' + req.params.msg);
+	
 })
+
 
 
 module.exports = router

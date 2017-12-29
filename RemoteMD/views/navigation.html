@@ -8,14 +8,21 @@
   </head> 
   <body>
     <div id="container">
-      <div id="buttons">
-   
-        <img id="flash" class="lightOff round" onclick="flashlight()" src="icons/flash.png" /> 
-        <img id="left" class="navigation" onclick="turnLeft()" src="icons/left.png"/> 
-        <img id="go" class="none round" onclick="stop()" src="icons/stop.png"/>
-        <img id="stop" class="none round" onclick="go()" src="icons/go.png"/> 
-        <img id="right" class="navigation" onclick="turnRight()" src="icons/right.png"/>
-   
+      <div id="buttons1">
+        <img id="flash" class="lightOff" onclick="flashlight()" src="icons/flash.png" /> 
+        <img id="left1" class="none" onclick="turnLeft(1)" src="icons/turnleft1.png"/>
+        <img id="left2" class="none" onclick="turnLeft(2)" src="icons/turnleft2.png"/>
+        <img id="left3" class="none" onclick="turnLeft(3)" src="icons/turnleft3.png"/>
+      </div>
+      <div id="move">
+        <img id="vertical" class="none" onclick="forward()" src="icons/forward.png"/>
+        <img id="vertical" class="none" onclick="back()" src="icons/back.png"/>
+      </div>
+      <div id="buttons2">
+        <img id="right3" class="none" onclick="turnRight(3)" src="icons/turnright3.png"/>
+        <img id="right2" class="none" onclick="turnRight(2)" src="icons/turnright2.png"/>
+        <img id="right1" class="none" onclick="turnRight(1)" src="icons/turnright1.png"/>
+      </div>
       </div>
     </div>  
   </body>
