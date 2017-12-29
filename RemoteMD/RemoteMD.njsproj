@@ -31,6 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="map_listener.js" />
     <Compile Include="app.js" />
     <Compile Include="app2.js" />
     <Compile Include="routes\cloud.js" />

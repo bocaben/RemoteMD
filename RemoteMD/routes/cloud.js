@@ -27,7 +27,8 @@ router.get('/navigation', function(req, res) {
 })
 */
 
-var robotURL = 'http://192.168.43.77' + ':8080'
+//var robotURL = 'http://192.168.43.77' + ':8080';
+var robotURL = 'http://localhost' + ':8080';
 
 
 
