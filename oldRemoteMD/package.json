@@ -1,0 +1,25 @@
+{
+  "name": "remote-md",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "description": "RemoteMD",
+  "author": {
+    "name": "Ben Weiss"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.0",
+    "debug": "^2.2.0",
+    "ejs": "^2.5.7",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "node-fetch": "^1.7.3",
+    "nodemon": "^1.12.1",
+    "pug": "^2.0.0-beta6",
+    "serialport": "^6.0.4",
+    "serve-favicon": "^2.3.0"
+  }
+}
