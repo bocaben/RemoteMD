@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+//ctx.fillRect(20, 20, 150, 100);
+
+// Arbitrarily create map
+var a = [];
+for (i = 0; i < 300; i++) {
+	a[i] = [];
+    for (j = 0; j < 300; j++) { 
+    	a[i][j] = (i+j*2)%100 < 25;
+	}
+}
+
+for (i = 0; i < 300; i++) { 
+    for (j = 0; j < 300; j++) {
+    	if (a[i][j]) {
+        	ctx.fillRect(i, j, 1, 1);
+        }
+    }
+}
+
+function printMousePos(event) {
+	var tile = (a[event.layerX][event.layerY]? "a Wall" : "Empty")
+    alert(`You clicked ${tile}: (${event.layerX},${event.layerY})`);
+}
+
+c.addEventListener("click", printMousePos);
+
+
+</script>
+
+</body>
+</html>
