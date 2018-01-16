@@ -5,6 +5,7 @@ body {
   background-color: rgb(209, 232,255);
 }
 
+
 /* RemoteMD title */
 h2 {
   text-align: center;
@@ -16,6 +17,7 @@ h2 {
                2px 2px 2px black;
 }
 
+
 #container {
   max-width: 900px;
   margin: 0 auto;
@@ -24,48 +26,42 @@ h2 {
   text-align: center;
 }
 
-
-form {
+#robotsID {
   padding: 20px 0;
   position: relative;
   z-index: 2;
 }
 
-form input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
+/* dropdown */
+select {
 
   outline: 0;
   border: 1px solid white;
   background-color: rgba(255, 255, 255, 0.289);
   width: 250px;
   border-radius: 3px;
-  padding: 10px 15px;
+  padding: 5px 15px;
   margin: 0 auto 10px auto;
   display: block;
   text-align: left;
   font: bold 18px 'Open Sans Condensed', arial, sans;
   color:  rgb(31, 73, 125);
   -webkit-transition-duration: 0.25s;
-          transition-duration: 0.25s;
+        transition-duration: 0.25s;
 }
 
-form input:hover {
+select:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-form input:focus {
-  background-color: white;
-  width: 300px;
-  color: blue;
-}
 
-form button {
+
+/* Let's Start! */
+button {
   -webkit-appearance: none;
-     -moz-appearance: none;
+  -moz-appearance: none;
 
   outline: 0;
-  display: inline-block;
   background-color: white;
   border: 0;
   padding: 10px 15px;
@@ -73,21 +69,26 @@ form button {
   border-radius: 3px;
   width: 130px;
   margin-top: 20px;
-  margin-left: 10px;
+
   cursor: pointer;
   font: bold 18px 'Open Sans Condensed';
   -webkit-transition-duration: 0.25s;
-          transition-duration: 0.25s;
+        transition-duration: 0.25s;
 }
 
-form button:hover {
+button:hover {
   background-color: #f5f7f9;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(31, 73, 125);
 }
 
 #robot {
   position: relative;
   float: left;
-  bottom: 300px;
+  bottom: 245px;
 }
 
 @media only screen and (max-width: 800px) { 
@@ -100,4 +101,3 @@ img {
   max-height: 300px;
   width: auto;
 }
-

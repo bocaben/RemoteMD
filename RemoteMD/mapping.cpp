@@ -19,8 +19,9 @@ int main() {
     if (command == "TU_20") conf = "S_TU_20";
     if (command == "TU_45") conf = "S_TU_45";
     if (command == "TU_90") conf = "S_TU_90";
-    if (command == "FO_10") conf = "S_FO_10";
-    if (command == "FO_-10") conf = "S_FO_-10";
+    if (command == "FO_30") conf = "S_FO_30";
+    if (command == "ST") conf = "S_ST";
+    if (command == "FO_-30") conf = "S_FO_-30";
     if (command == "TU_-20") conf = "S_TU_-20";
     if (command == "TU_-45") conf = "S_TU_-45";
     if (command == "TU_-90") conf = "S_TU_-90";

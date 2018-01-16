@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+
+body {
+  background-color: rgb(209, 232,255);
+}
+
+.container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#state {
+  background-color: white;
+  width: 220px;
+  height: 150px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+header {
+  background: rgb(31, 73, 125);
+  padding: 10px 5px;
+  color: white;
+  font: bold 18px 'Open Sans Condensed';
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+#connection {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 10px;
+}
+
+p {
+  font: 22px 'Dosis';
+  text-align: center;
+}
+
+/*buttons div*/
+#buttons1 {
+  width: 450px;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  bottom: 40px;
+  left: 140px; 
+}
+
+#move {
+  width: 100px;
+  height: 200px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 690px; 
+}
+
+#forward, #stop, #back {
+  width: 55px;
+  display: block;
+  margin: auto;
+  margin-bottom: 4px;
+}
+
+#buttons2 {
+  width: 450px;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  left: 860px;
+  bottom: 40px; 
+}
+
+.left, .right {
+  background-color: white;
+}
+
+.ctrl {
+  width: 12%;
+  margin: 3%;
+  border-style: none;
+  border-radius: 50%;
+  display: inline-block;
+  pointer-events: none;
+}
+
+
+.ctrl:hover {
+  opacity: 0.7;
+}
+
+/* aux classes */
+.yellow {
+  background-color: #fffc66;
+}
+
+.none {
+  background-color: white;
+}
+
+.green {
+  background-color: rgb(135, 248, 100);
+}
+
+.red {
+  background-color: rgb(219, 0, 0);
+}
+
+
+
+
