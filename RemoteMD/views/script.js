@@ -1,5 +1,5 @@
-//const ws = new WebSocket('ws://localhost/');
-const ws = new WebSocket('ws://35.197.216.190/');
+const ws = new WebSocket('ws://localhost/');
+//const ws = new WebSocket('ws://35.197.216.190/');
 
 
 // Navigation's buttons functions
@@ -152,9 +152,11 @@ ws.onmessage = function(msg) {
 				img.src = "icons/error.png";
 				return;
 		}
-	} else  if('conf' in data) {
+	} else  if('conf' in data && data.conf.includes('S_')) {
 						let button;
-						switch(data.conf) {
+						if (data.conf.includes('S_FO_30')) changeColor(document.getElementById('forward'), 'green');
+						if (data.conf.includes('S_FO_-30')) changeColor(document.getElementById('back'), 'green');
+				/*		switch(data.conf) {
 							case 'S_FO_30': 
 								changeColor(document.getElementById('forward'), 'green');
 								break;
@@ -164,7 +166,7 @@ ws.onmessage = function(msg) {
 							case 'S_FO_-30':
 								changeColor(document.getElementById('back'), 'green');
 								break;
-						}
+							} */
 						// update state to Resting
 						let p = document.getElementsByTagName('p')[0];
 						p.innerHTML = 'Resting';

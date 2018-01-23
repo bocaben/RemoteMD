@@ -32,6 +32,7 @@ wss.on('connection', function connection(ws, req) {
 
   mapping.stdout.on('data', function(data) {
     console.log('stdout: ' + data);
+
     ws.send(JSON.stringify({"conf": data.toString()}));
   });
 });

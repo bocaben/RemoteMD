@@ -33,8 +33,8 @@ wss_browser.on('connection', function connection(ws, req) {
   console.log('Connection to Browser: ESTABLISHED');
   writeToLog('Connection to Browser: ESTABLISHED');
 
-  //const ws_robot = new WebSocket('ws://192.168.10.172:8080');
-  const ws_robot = new WebSocket('ws://localhost:8080');
+  const ws_robot = new WebSocket('ws://132.68.40.73:8080');
+  //const ws_robot = new WebSocket('ws://localhost:8080');
 
   ws_robot.onopen = function() {
     console.log('Connection to Robot: ESTABLISHED');
