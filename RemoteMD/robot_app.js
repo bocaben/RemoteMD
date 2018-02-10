@@ -4,13 +4,13 @@ var WebSocket = require('ws');
 var app = express();
 
 const spawn = require('child_process').spawn;
-//const mapping = spawn('./Debug/MAPING.exe');
-const mapping = spawn('./mapping');
+const mapping = spawn('./MAPING/Debug/MAPING.exe');
+//const mapping = spawn('./mapping');
 
 // commands accpeted via console or via write()
 process.stdin.pipe(mapping.stdin);
 
-const wss = new WebSocket.Server({ port : 8080 });
+const wss = new WebSocket.Server({ port : 80 });
 
 wss.on('connection', function connection(ws, req) {
   console.log('Connection to Cloud: ESTABLISHED');

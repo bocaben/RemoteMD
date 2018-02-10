@@ -2,32 +2,30 @@
 <html>
   <head>
     <title>RemoteMD</title>    
-    <link rel="stylesheet" type="text/css" href="navigation.css">
-    <meta name="viewport" content="width-device-width, initial-scale-1.0" />
+    <link rel="stylesheet" type="text/css" href="navigation.css" />
     <script type="text/javascript" src="script.js"></script>
   </head> 
   <body>
     <div id="state">
-      <header>Robot's state<img id="connection" src="icons/off.png"/></header>
+      <header>Robot's state</header>
       <p></p>
     </div>
     <div class="container">
         <div id="buttons1">
-          <img id="flash" class="ctrl none" onclick="flashlight()" src="icons/flash.png" /> 
-          <img class="ctrl left" onclick="turnLeft(90)" src="icons/left1.png"/>
-          <img class="ctrl left" onclick="turnLeft(45)" src="icons/left2.png"/>
-          <img class="ctrl left" onclick="turnLeft(20)" src="icons/left3.png"/>
+          <img id="flash" onclick="flashlight()" src="icons/flash.png" /> 
+          <img onclick="turnLeft(90)" src="icons/left1.png"/>
+          <img onclick="turnLeft(45)" src="icons/left2.png"/>
+          <img onclick="turnLeft(20)" src="icons/left3.png"/>
         </div>
         <div id="move">
-          <img id="forward" class="ctrl none" onclick="forward()" src="icons/forward.png"/>
-          <img id="stop" class="ctrl none" onclick="stop()" src="icons/stop.png"/>
-          <img id="back" class="ctrl none" onclick="back()" src="icons/back.png"/>
+          <img id="forward" onclick="forward()" src="icons/forward.png"/>
+          <img id="stop" onclick="stop()" src="icons/stop.png"/>
+          <img id="back" onclick="back()" src="icons/back.png"/>
         </div>
-        <div id="buttons2">
-         
-          <img class="ctrl right" onclick="turnRight(20)" src="icons/right3.png"/>
-          <img class="ctrl right" onclick="turnRight(45)" src="icons/right2.png"/>
-          <img class="ctrl right" onclick="turnRight(90)" src="icons/right1.png"/>
+        <div id="buttons2">         
+          <img onclick="turnRight(20)" src="icons/right3.png"/>
+          <img onclick="turnRight(45)" src="icons/right2.png"/>
+          <img onclick="turnRight(90)" src="icons/right1.png"/>
         </div>
     </div>  
   </body>

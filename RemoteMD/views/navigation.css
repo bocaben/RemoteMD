@@ -22,20 +22,33 @@ body {
   left: 10px;
 }
 
-header {
+#state header {
   background: rgb(31, 73, 125);
-  padding: 10px 5px;
+  padding: 10px 30px 10px 5px;
   color: white;
   font: bold 18px 'Open Sans Condensed';
   font-size: 1.2em;
   font-weight: 600;
+  position: relative;
 }
 
-#connection {
+#state header::after {
+  content: '';
+  background: url(icons/off.png) no-repeat center/contain;
+  top: 10px;
+  display: block;
   position: absolute;
   width: 25px;
   height: 25px;
   right: 10px;
+}
+
+.state-established #state header::after {
+  background-image: url(icons/on.png);
+}
+
+.state-error #state header::after {
+  background-image: url(icons/error.png);
 }
 
 p {
@@ -81,38 +94,41 @@ p {
   bottom: 40px; 
 }
 
-.left, .right {
-  background-color: white;
-}
 
-.ctrl {
+.container img {
   width: 12%;
   margin: 3%;
   border-style: none;
   border-radius: 50%;
   display: inline-block;
   pointer-events: none;
+  opacity: 0.4;
+  background-color: white;
 }
 
+.state-established .container img {
+  pointer-events: auto;
+  opacity: 1;
+}
 
-.ctrl:hover {
+.container img:hover {
   opacity: 0.7;
 }
 
 /* aux classes */
-.yellow {
+#flash.on {
   background-color: #fffc66;
 }
 
-.none {
+.off {
   background-color: white;
 }
 
-.green {
+#forward.on {
   background-color: rgb(135, 248, 100);
 }
 
-.red {
+#stop.on {
   background-color: rgb(219, 0, 0);
 }
 
