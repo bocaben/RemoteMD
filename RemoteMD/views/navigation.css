@@ -120,11 +120,12 @@ p {
   background-color: #fffc66;
 }
 
-.off {
-  background-color: white;
-}
 
 #forward.on {
+  background-color: rgb(135, 248, 100);
+}
+
+#back.on {
   background-color: rgb(135, 248, 100);
 }
 

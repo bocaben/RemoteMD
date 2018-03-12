@@ -4,13 +4,17 @@ var WebSocket = require('ws');
 var app = express();
 
 const spawn = require('child_process').spawn;
-const mapping = spawn('./MAPING/Debug/MAPING.exe');
-//const mapping = spawn('./mapping');
+//const mapping = spawn('./MAPING/Debug/MAPING.exe');
+const mapping = spawn('./mapping');
+const readline = require('readline');
+const rl = readline.createInterface({ input: mapping.stdout });
+
 
 // commands accpeted via console or via write()
 process.stdin.pipe(mapping.stdin);
 
-const wss = new WebSocket.Server({ port : 80 });
+//const wss = new WebSocket.Server({ port : 80 });
+const wss = new WebSocket.Server({ port : 8080 });
 
 wss.on('connection', function connection(ws, req) {
   console.log('Connection to Cloud: ESTABLISHED');
@@ -30,10 +34,9 @@ wss.on('connection', function connection(ws, req) {
     console.log('Connection to Cloud: CLOSED');
   });
 
-  mapping.stdout.on('data', function(data) {
-    console.log('stdout: ' + data);
-
-    ws.send(JSON.stringify({"conf": data.toString()}));
+  rl.on('line', function(line) {
+    console.log('stdout: ' + line);
+    ws.send(JSON.stringify({"conf": line.toString()}));
   });
 });
 
