@@ -133,6 +133,15 @@ p {
   background-color: rgb(219, 0, 0);
 }
 
-
+#myCanvas {
+    background-color: white;
+    /*max-width: 300px;*/
+    /*margin: 100px auto;*/
+    /*margin-top: 50%;*/
+    margin-left: 25%;
+    /*padding: 0 0;*/
+    /*height: 300px;*/
+    /*text-align: center;*/
+}
 
 

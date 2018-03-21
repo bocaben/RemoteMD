@@ -3,13 +3,15 @@
   <head>
     <title>RemoteMD</title>    
     <link rel="stylesheet" type="text/css" href="navigation.css" />
-    <script type="text/javascript" src="script.js"></script>
   </head> 
   <body>
     <div id="state">
       <header>Robot's state</header>
       <p></p>
     </div>
+      <canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+      </canvas>
     <div class="container">
         <div id="buttons1">
           <img id="flash" onclick="flashlight()" src="icons/flash.png" /> 
@@ -30,3 +32,4 @@
     </div>  
   </body>
 </html>
+<script type="text/javascript" src="script.js"></script>

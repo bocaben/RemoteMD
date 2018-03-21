@@ -101,3 +101,8 @@ img {
   max-height: 300px;
   width: auto;
 }
+
+#errorlabel {
+    color: red;
+    font: bold 18px 'Open Sans Condensed', arial, sans;
+}

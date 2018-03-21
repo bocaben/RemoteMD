@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RemoteMD</title>    
+    <link rel="stylesheet" type="text/css" href="patient.css" />
+  </head> 
+  <body>
+    <div id="container">
+      <h2>RemoteMD</h2>
+        <form class="form" id="registration-form" method="POST" action="/updatemydoctors">
+
+            <div id="mydoctors" name="mydoctors"></div>
+            <button type="submit" name="submitbutton" value="back">Back</button>
+            <button type="submit" name="submitbutton" value="updatemydoctors">Update My Doctors</button><br />
+
+            <script>
+                function httpGetAsync(theUrl, callback) {
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                            callback(JSON.parse(xmlHttp.responseText));
+                    }
+                    xmlHttp.open("get", theUrl, true); // true for asynchronous 
+                    xmlHttp.send(null);
+                }
+
+                function updateMyDoctors(docsInfo) {
+                    if (docsInfo.hasOwnProperty('error')) {
+                        window.location.href = '/?error=unauthorized';
+                    }
+                    var alldocs = docsInfo.alldocs;
+                    var mydocs = docsInfo.mydocs;
+                    console.log(alldocs);
+                    for (i = 0; i < docsInfo.alldocs.length; i++) {
+                        var cb = document.createElement("input");
+                        cb.type = "checkbox";
+                        cb.id = alldocs[i];
+                        cb.name = "mydoctors[]";
+                        cb.value = alldocs[i];
+                        cb.checked = (mydocs.indexOf(alldocs[i]) >= 0);
+                        var text = document.createTextNode(alldocs[i]);
+                        var br = document.createElement("p");
+                        document.getElementById('mydoctors').appendChild(cb);
+                        document.getElementById('mydoctors').appendChild(text);
+                        document.getElementById('mydoctors').appendChild(br);
+                    }
+                }
+                httpGetAsync('/getdocs', updateMyDoctors);
+            </script>
+        </form>
+        <div id="robot">
+          <img src="icons/robot.png" />
+        </div>
+    </div>  
+  </body>
+</html>

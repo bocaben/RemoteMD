@@ -31,34 +31,34 @@ form {
   z-index: 2;
 }
 
-form input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
+    form input{
+        /*-webkit-appearance: none;
+        -moz-appearance: none;
+        outline: 0;
+        border: 1px solid white;
+        background-color: rgba(255, 255, 255, 0.289);
+        width: 25px;
+        border-radius: 3px;
+        padding: 10px 15px;
+        margin: 0 auto 10px auto;
+        display: block;
+        text-align: left;
+        font: bold 18px 'Open Sans Condensed', arial, sans;
+        color: rgb(31, 73, 125);
+        -webkit-transition-duration: 0.25s;
+        transition-duration: 0.25s;*/
+    }
 
-  outline: 0;
-  border: 1px solid white;
-  background-color: rgba(255, 255, 255, 0.289);
-  width: 250px;
-  border-radius: 3px;
-  padding: 10px 15px;
-  margin: 0 auto 10px auto;
-  display: block;
-  text-align: left;
-  font: bold 18px 'Open Sans Condensed', arial, sans;
-  color:  rgb(31, 73, 125);
-  -webkit-transition-duration: 0.25s;
-          transition-duration: 0.25s;
-}
 
 form input:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-form input:focus {
+/*form input:focus {
   background-color: white;
   width: 300px;
   color: blue;
-}
+}*/
 
 form button {
   -webkit-appearance: none;
@@ -71,7 +71,7 @@ form button {
   padding: 10px 15px;
   color: rgb(31, 73, 125);
   border-radius: 3px;
-  width: 130px;
+  width: 150px;
   margin-top: 20px;
   margin-left: 10px;
   cursor: pointer;
@@ -101,7 +101,8 @@ img {
   width: auto;
 }
 
-#errorlabel {
+
+label {
     color: red;
     font: bold 18px 'Open Sans Condensed', arial, sans;
 }

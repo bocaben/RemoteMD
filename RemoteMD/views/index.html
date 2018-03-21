@@ -7,15 +7,36 @@
   <body>
     <div id="container">
       <h2>RemoteMD</h2>
-        <form class="form">
-          <input type="text" placeholder="Username">
-          <input type="password" placeholder="Password">
-          <button type="submit" id="login-button">Doctor</button>
-          <button type="submit" id="login-button">Patient</button>
+        <form class="form" method="POST" action="/login">
+          <label id="errorlabel"></label>
+          <input type="text" name="username" placeholder="Username" required maxlength="31">
+          <input type="password" name="password" placeholder="Password" required maxlength="31">
+          <button type="submit" name="loginbutton" value="doctor">Doctor</button>
+            <button type="submit" name="loginbutton" value="patient">Patient</button><br/><br/>
+        </form>
+        <form class="form" action="/register.html">
+        <label>Not a user?</label>
+        <button type="submit" id="registerbutton">Register!</button>
         </form>
         <div id="robot">
           <img src="icons/robot.png" />
         </div>
+        <script>
+            function GetURLParameter(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+            if (GetURLParameter('error') === "unauthorized")
+                document.getElementById('errorlabel').innerHTML = 'You need to be logged in';
+            if (GetURLParameter('error') === "loginfailed")
+                document.getElementById('errorlabel').innerHTML = 'Bad username/password';
+
+        </script>
     </div>  
   </body>
 </html>
