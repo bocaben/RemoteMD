@@ -1,4 +1,14 @@
-const ws = new WebSocket('ws://localhost/');
+function GetURLParameter(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+const ws = new WebSocket('ws://' + GetURLParameter('cloudIp'));
 //const ws = new WebSocket('ws://35.197.216.190/');
 
 function sendToCloud(command) {
@@ -43,17 +53,17 @@ function turnRight(num) {
 
 
 // Websockets
-ws.onopen = function() {
-	console.log('Connection to Cloud: ESTABLISHED');
-}
+ws.onopen = function () {
+    console.log('Connection to Cloud: ESTABLISHED');
+};
 
-ws.onclose = function() {
-	console.log('Connection to Cloud: CLOSED');
-}
+ws.onclose = function () {
+    console.log('Connection to Cloud: CLOSED');
+};
 
-ws.onerror = function(err) {
-	console.log('Connection to Cloud: ERROR');
-}
+ws.onerror = function (err) {
+    console.log('Connection to Cloud: ERROR');
+};
 
 
 // AUX function
@@ -104,25 +114,56 @@ function changeColorAndStateForCmd(msg) {
 }
 
 // Handling Cloud's messages
-ws.onmessage = function(msg) {
-	console.log('Message from Cloud: ' + msg.data);
+ws.onmessage = function (msg) {
+    console.log('Message from Cloud: ' + msg.data);
 
-	// handle Robot's state
-	const states = {established: 'Resting', closed: '', error: ''};
-	const data = JSON.parse(msg.data);
-	if ('robot_conn' in data) {
-		let classList = document.body.classList;
-		for (const s in states) {
-			const className = 'state-' + s;
-			if (classList.contains(className)) classList.remove(className);
-			if (data.robot_conn === s) {
-				classList.add(className);
-				updateState(states[s]);
-			}
-		}
-	}  
-	// handle confirm/success/failed messages
-	if ('conf' in data)	changeColorAndStateForCmd(data.conf);
+    // handle Robot's state
+    const states = { established: 'Resting', closed: '', error: '' };
+    const data = JSON.parse(msg.data);
+    if ('robot_conn' in data) {
+        let classList = document.body.classList;
+        for (const s in states) {
+            const className = 'state-' + s;
+            if (classList.contains(className)) classList.remove(className);
+            if (data.robot_conn === s) {
+                classList.add(className);
+                updateState(states[s]);
+            }
+        }
+    }
+    // handle confirm/success/failed messages
+    if ('conf' in data) changeColorAndStateForCmd(data.conf);
+};
+
+function showMap() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    //ctx.fillStyle = "white";
+    //ctx.fillRect(0, 0, 300, 300);
+    //ctx.fillStyle = "black";
+
+    // Arbitrarily create map
+    var a = [];
+    for (i = 0; i < 300; i++) {
+        a[i] = [];
+        for (j = 0; j < 300; j++) {
+            a[i][j] = (i + j * 2) % 100 < 25;
+        }
+    }
+
+    for (i = 0; i < 300; i++) {
+        for (j = 0; j < 300; j++) {
+            if (a[i][j]) {
+                ctx.fillRect(i, j, 1, 1);
+            }
+        }
+    }
+    c.addEventListener("click", printMousePos);
 }
 
-	
+function printMousePos(event) {
+    var tile = (a[event.layerX][event.layerY] ? "a Wall" : "Empty")
+    alert(`You clicked ${tile}: (${event.layerX},${event.layerY})`);
+}
+
+showMap();

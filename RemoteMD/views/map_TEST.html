@@ -9,8 +9,9 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-//ctx.fillRect(20, 20, 150, 100);
-
+ctx.fillStyle = "blue";
+ctx.fillRect(50, 20, 200, 200);
+ctx.fillStyle = "orange";
 // Arbitrarily create map
 var a = [];
 for (i = 0; i < 300; i++) {

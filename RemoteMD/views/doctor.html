@@ -11,12 +11,46 @@
     <div id="container">
       <h2>RemoteMD</h2>
       <div id="robotsID">
-        <select>
-          <option selected="selected">Select a Robot</option>
-          <option value=></option>
-        </select>
-    
-        <button type="submit"><a href="navigation.html">let's Start!</a></button>
+          <form class="form" id="doctor-form" method="post" action="/choosepatient">
+              <label id="errorlabel"></label>
+              <select id="mypatients" name="mypatients" required>
+              </select>
+              <button type="submit" name="submitbutton" value="back">Back</button>
+              <button type="submit" name="submitbutton" value="start">Let's Start!</button>
+          
+              <script>
+                  function httpGetAsync(theUrl, callback) {
+                      var xmlHttp = new XMLHttpRequest();
+                      xmlHttp.onreadystatechange = function () {
+                          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                              callback(JSON.parse(xmlHttp.responseText));
+                      }
+                      xmlHttp.open("get", theUrl, true); // true for asynchronous 
+                      xmlHttp.send(null);
+                  }
+
+                  function updateMyPatients(patientInfo) {
+                      console.log(patientInfo);
+                      if (patientInfo.hasOwnProperty('error')) {
+                          window.location.href = '/?error=unauthorized';
+                      }
+                      var mypatients = patientInfo.mypatients;
+                      if (mypatients.length == 0) {
+                          var errorlabel = document.getElementById("errorlabel");
+                          errorlabel.innerText = "You have no patients!";
+                          return;
+                      }
+                      var dropdown = document.getElementById("mypatients");
+                      for (i = 0; i < mypatients.length; i++) {
+                          var option = document.createElement("option");
+                          option.text = mypatients[i];
+                          option.value = mypatients[i];
+                          dropdown.add(option);
+                      }
+                  }
+                  httpGetAsync('/getpatients', updateMyPatients);
+              </script>
+          </form>
       </div>
       <div id="robot">
         <img src="./icons/robot.png">
