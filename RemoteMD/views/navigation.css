@@ -136,6 +136,7 @@ p {
 #myCanvas {
     background-color: white;
     width: 400px;
+    height: 400px;
     /*max-width: 300px;*/
     /*margin: 100px auto;*/
     /*margin-top: 50%;*/

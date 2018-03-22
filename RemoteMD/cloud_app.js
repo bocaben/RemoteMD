@@ -165,7 +165,7 @@ app.post('/updatemydoctors', urlencodedParser, function (req, res) {
     if (req.param('submitbutton') === "back")
         return res.redirect('/');
     var docs = req.param('mydoctors');
-    if (docs == null)
+    if (!docs)
         docs = [];
 
     writeToLog(`Trying to update ${user.username}'s doctors to: ${docs}`);
