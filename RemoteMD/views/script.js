@@ -9,7 +9,8 @@ function GetURLParameter(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-const ws = new WebSocket('ws://' + GetURLParameter('cloudIp'));
+//const ws = new WebSocket('ws://' + GetURLParameter('cloudIp'));
+const ws = new WebSocket('ws://localhost');
 
 function sendToCloud(command) {
 	ws.send(JSON.stringify({"command": command}));

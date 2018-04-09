@@ -79,6 +79,7 @@ function writeToLog(data) {
 wss_browser.on('connection', function connection(ws, req) {
   writeToLog('Connection to Browser: ESTABLISHED');
 
+  //const ws_robot = new WebSocket('ws://132.68.40.73:8080');
   const ws_robot = new WebSocket('ws://192.168.9.38:8080');
   //const ws_robot = new WebSocket('ws://localhost:8080');
 

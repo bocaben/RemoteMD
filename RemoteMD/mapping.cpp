@@ -12,6 +12,7 @@ int main() {
   string conf;
   string c = "C_";
   string s = "S_";
+  cout << "WELCOME" << endl;
 
   while(true) {
     cin >> command;
