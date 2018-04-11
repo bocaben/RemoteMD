@@ -168,10 +168,19 @@ function changeColorAndStateForCmd(msg) {
 
     // If MV request was acknowleged
     if (cmd.startsWith('MV_')) {
-        if (startsWith(msg, 'F_'))
-            updateState(`FAILED Move to target`);
-        else {
+        if (startsWith(msg, 'F_')) {
+            mapTarget = [];
+            updateState(`FAILED Moving to target`);
+            drawMap();
+        }
+        else if (startsWith(msg, 'S_')) {
+            mapTarget = [];
+            updateState('Resting');
+            drawMap();
+        }
+        else { // Starts with C_
             mapTarget = cmd.substr(3).split('_').map(x => parseInt(x));
+            updateState('Moving to target');
             drawMap();
         }
     }
@@ -221,8 +230,6 @@ ws.onmessage = function (msg) {
             mapRobotLocation = data.conf.substr(3).split('_').map(x => parseInt(x));
             console.log('mapRobotLocation ' + mapRobotLocation[0] + ' ' + mapRobotLocation[1])
             // reset target if reached
-            if (mapRobotLocation[0] === mapTarget[0] && mapRobotLocation[1] === mapTarget[1])
-                mapTarget = [];
             drawMap();
         }
     }
@@ -234,8 +241,10 @@ function printMousePos(event) {
         sendToCloud('MAP');
         return;
     }
-    var clickX = (event.layerX / 400) * mapWidth;
-    var clickY = (event.layerY / 400) * mapHeight;
+    var clickX = (event.offsetX / 400) * mapWidth;
+    var clickY = (event.offsetY / 400) * mapHeight;
+    if ((clickX > mapWidth) || (clickY > mapHeight))
+        return;
     console.log(`move to: ${clickX}, ${clickY}`);
     // Check if a wall was clicked
     if (mapCoordinates.findIndex(c => c[0]===clickX && c[1]===clickY) >= 0)
